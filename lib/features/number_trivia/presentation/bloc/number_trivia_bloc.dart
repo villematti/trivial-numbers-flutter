@@ -1,14 +1,17 @@
 import 'dart:async';
+import 'dart:html';
+import 'package:meta/meta.dart';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:number_trivia/features/number_trivia/domain/entities/number_trivia.dart';
 
 part 'number_trivia_event.dart';
 part 'number_trivia_state.dart';
 
 class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
   @override
-  NumberTriviaState get initialState => NumberTriviaInitial();
+  NumberTriviaState get initialState => Empty();
 
   @override
   Stream<NumberTriviaState> mapEventToState(
