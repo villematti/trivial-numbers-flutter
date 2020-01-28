@@ -18,4 +18,8 @@ class NumberTriviaModel extends NumberTrivia {
       'number': number,
     };
   }
+
+  @override
+  // TODO: implement props
+  List<Object> get props => null;
 }
