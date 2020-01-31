@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
 
 import 'package:bloc/bloc.dart';
@@ -50,17 +51,21 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
         yield Loading();
         final failureOrTrivia =
             await getConcreteNumberTrivia(Params(number: integer));
-        yield failureOrTrivia.fold(
-            (failure) => Error(message: _mapFailureToMessage(failure)),
-            (trivia) => Loaded(trivia: trivia));
+        yield* _eitherLoadedOrErrorState(failureOrTrivia);
       });
     } else if (event is GetTriviaForRandomNumber) {
       yield Loading();
       final failureOrTrivia = await getRandomNumberTrivia(NoParams());
-      yield failureOrTrivia.fold(
-          (failure) => Error(message: _mapFailureToMessage(failure)),
-          (trivia) => Loaded(trivia: trivia));
+      yield* _eitherLoadedOrErrorState(failureOrTrivia);
     }
+  }
+
+  Stream<NumberTriviaState> _eitherLoadedOrErrorState(
+    Either<Failure, NumberTrivia> failureOrTrivia,
+  ) async* {
+    yield failureOrTrivia.fold(
+        (failure) => Error(message: _mapFailureToMessage(failure)),
+        (trivia) => Loaded(trivia: trivia));
   }
 
   String _mapFailureToMessage(Failure failure) {
