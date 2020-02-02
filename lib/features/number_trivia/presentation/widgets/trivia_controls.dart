@@ -61,12 +61,18 @@ class _TriviaControlsState extends State<TriviaControls> {
 
   void dispatchContrete() {
     controller.clear();
+
+    // Dismiss keyboard on press
+    FocusScope.of(context).requestFocus(FocusNode());
     BlocProvider.of<NumberTriviaBloc>(context)
         .add(GetTriviaForConcreteNumber(inputStr));
   }
 
   void dispatchRandom() {
     controller.clear();
+
+    // Dismiss keyboard on press
+    FocusScope.of(context).requestFocus(FocusNode());
     BlocProvider.of<NumberTriviaBloc>(context).add(GetTriviaForRandomNumber());
   }
 }
