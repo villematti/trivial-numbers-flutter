@@ -17,7 +17,7 @@ class MockGetRandomNumberTrivia extends Mock implements GetRandomNumberTrivia {}
 class MockInputConverted extends Mock implements InputConverter {}
 
 void main() {
-  NumberTriviaBloc bloc;
+  var bloc;
   MockGetConcreteNumberTrivia mockGetConcreteNumberTrivia;
   MockGetRandomNumberTrivia mockGetRandomNumberTrivia;
   MockInputConverted converter;
