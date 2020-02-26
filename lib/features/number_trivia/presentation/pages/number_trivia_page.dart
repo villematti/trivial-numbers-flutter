@@ -41,6 +41,10 @@ BlocProvider<NumberTriviaBloc> buildBody(BuildContext context) {
                   return TriviaDisplay(numberTrivia: state.trivia);
                 } else if (state is Error) {
                   return MessageDisplay(message: state.message);
+                } else {
+                  return MessageDisplay(
+                    message: 'Unknown error!',
+                  );
                 }
               },
             ),
