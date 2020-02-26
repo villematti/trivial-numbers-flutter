@@ -17,6 +17,7 @@ class MockGetRandomNumberTrivia extends Mock implements GetRandomNumberTrivia {}
 class MockInputConverted extends Mock implements InputConverter {}
 
 void main() {
+  // TODO: Fix linter error when bug is fixed. False positive.
   var bloc;
   MockGetConcreteNumberTrivia mockGetConcreteNumberTrivia;
   MockGetRandomNumberTrivia mockGetRandomNumberTrivia;
